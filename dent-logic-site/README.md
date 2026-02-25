@@ -11,9 +11,9 @@ A lightweight, single-page site for Greg's PDR business.
 
 ## Customize
 
-- Replace the logo URL in `index.html` (`<img class="logo" src="...">`) with a local file if you have one, e.g. `./assets/logo.png`.
-- To enable the email form, sign up at [Formspree](https://formspree.io), create a form, then replace `YOUR_FORM_ID` in the form `action`.
-- Update phone, areas served, and links as needed.
+- Replace the logo file in `index.html` (`<img class="logo" src="./logo.png">`) if needed.
+- Update phone number, service areas, and social links in `index.html`.
+- The estimate form is currently configured to open the visitor's SMS app with prefilled request details (no backend required).
 - All styling is in `styles.css`.
 
 ## Deploy options
