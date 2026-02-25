@@ -95,7 +95,7 @@ a { color: var(--brand-dark); text-underline-offset: 2px; }
 
 .hero {
   position: relative;
-  background-image: url("https://images.unsplash.com/photo-1616348436168-9b5f5f654fa8?q=80&w=1600&auto=format&fit=crop");
+  background-image: url("./assets/after-1.jpg");
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -116,6 +116,12 @@ a { color: var(--brand-dark); text-underline-offset: 2px; }
   margin: 0 0 0.7rem;
 }
 .hero p { margin: 0 auto 1.25rem; font-size: 1.07rem; max-width: 680px; }
+.hero-locations {
+  margin: 0 auto 1.2rem;
+  max-width: 760px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.92);
+}
 .hero-points {
   margin: 0 0 1.3rem;
   padding: 0;
