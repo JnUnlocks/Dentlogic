@@ -54,6 +54,13 @@ a { color: var(--brand-dark); text-underline-offset: 2px; }
   align-items: center;
   padding: 0.85rem 0;
 }
+.brand-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: #fff;
+}
 .logo { width: 72px; height: auto; border-radius: 12px; }
 .brand { margin: 0; font-size: 1.35rem; }
 .tagline { margin: 0.15rem 0 0; color: var(--header-ink); font-size: 0.92rem; }
@@ -264,7 +271,16 @@ input, textarea {
   background: #fff;
   font: inherit;
 }
+select {
+  width: 100%;
+  padding: 0.72rem 0.88rem;
+  border-radius: 10px;
+  border: 1px solid #d7dee8;
+  background: #fff;
+  font: inherit;
+}
 input:focus-visible,
+select:focus-visible,
 textarea:focus-visible,
 button:focus-visible,
 a:focus-visible,
@@ -279,15 +295,41 @@ summary:focus-visible {
   align-items: center;
 }
 .form-footnote { margin-bottom: 0; color: var(--muted); font-size: 0.9rem; }
+.field-note { margin: 0.1rem 0 0; color: var(--muted); font-size: 0.86rem; }
 .form-status {
   margin-top: 0.75rem;
   color: var(--success);
   font-weight: 600;
 }
+.form-status-error { color: #b42318; }
 
 .site-footer { background: #0f172a; color: #cbd5e1; margin-top: 2rem; }
 .footer-inner { padding: 2rem 0; text-align: center; }
 .link { text-decoration: underline; }
+.back-to-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 80;
+  background: #0f1720;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 0.55rem 0.85rem;
+  text-decoration: none;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+.back-to-top:hover,
+.back-to-top:focus-visible { background: #1f2b3d; color: #fff; }
+.back-to-top.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
 
 @media (max-width: 760px) {
   .header-inner {
@@ -296,6 +338,7 @@ summary:focus-visible {
     text-align: center;
     gap: 0.65rem;
   }
+  .brand-home { justify-content: center; }
   .header-cta { justify-content: center; }
   .nav-list { justify-content: center; gap: 0.75rem; }
   .hero-inner { padding: 4.4rem 0 4rem; }

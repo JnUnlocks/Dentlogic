@@ -26,15 +26,18 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+  <div id="top"></div>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <header class="site-header">
     <div class="container header-inner">
-      <img class="logo" src="./logo.png" alt="Dent Logic Inc logo" width="80" height="80" />
-      <div>
-        <h1 class="brand">Dent Logic Inc</h1>
-        <p class="tagline">Paintless Dent Removal Experts</p>
-      </div>
+      <a class="brand-home" href="#top" aria-label="Go to top of page">
+        <img class="logo" src="./logo.png" alt="Dent Logic Inc logo" width="80" height="80" />
+        <span>
+          <h1 class="brand">Dent Logic Inc</h1>
+          <p class="tagline">Paintless Dent Removal Experts</p>
+        </span>
+      </a>
       <div class="header-cta">
         <a class="btn btn-call" href="tel:+16103167761" aria-label="Call Dent Logic at 610 316 7761">Call (610) 316-7761</a>
         <a class="btn btn-secondary" href="sms:+16103167761">Text Us</a>
@@ -202,21 +205,31 @@
 
     <section class="estimate container" id="estimate">
       <h3>Free Estimate</h3>
-      <p>Need a quick quote now? Call or text <a href="tel:+16103167761" class="link">(610) 316-7761</a>. You can also use this request form to draft your text message in one tap.</p>
+      <p>For the most complete response, email estimate requests are preferred at <a href="mailto:DentLogicInc@gmail.com" class="link">DentLogicInc@gmail.com</a>. If you want the fastest option, text is still available.</p>
 
       <div class="grid two">
+        <div class="card">
+          <h4>Email (Preferred)</h4>
+          <p><a href="mailto:DentLogicInc@gmail.com" class="link">DentLogicInc@gmail.com</a></p>
+          <p>Best for full estimate details and photo attachments.</p>
+        </div>
         <div class="card">
           <h4>Call or Text</h4>
           <p><a href="tel:+16103167761" class="link">(610) 316-7761</a></p>
           <p><a href="sms:+16103167761" class="link">Open text message</a></p>
-        </div>
-        <div class="card">
-          <h4>Message on Facebook</h4>
-          <p><a class="link" href="https://www.facebook.com/DentLogicInc" target="_blank" rel="noopener">facebook.com/DentLogicInc</a></p>
+          <p>Great for quick questions and fast scheduling.</p>
         </div>
       </div>
 
       <form class="quote-form" id="estimate-form" novalidate>
+        <div class="form-row">
+          <label for="preferred-contact">Preferred Contact Method</label>
+          <select id="preferred-contact" name="preferred_contact" aria-describedby="contact-method-note">
+            <option value="email" selected>Email (preferred)</option>
+            <option value="text">Text message</option>
+          </select>
+          <p class="field-note" id="contact-method-note">Choose how this request should open when you submit the form.</p>
+        </div>
         <div class="form-row">
           <label for="name">Name</label>
           <input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" />
@@ -235,10 +248,9 @@
         </div>
 
         <div class="form-cta-row">
-          <button class="btn btn-primary" type="submit">Draft Text Request</button>
-          <a class="btn btn-outline" href="sms:+16103167761">Text Directly</a>
+          <button class="btn btn-primary" type="submit">Prepare Estimate Request</button>
         </div>
-        <p class="form-footnote">On submit, this opens your text app with your details prefilled to speed up your estimate request.</p>
+        <p class="form-footnote">On submit, this opens your email app (preferred) or text app with your details prefilled. After it opens, attach 2-3 photos before sending.</p>
         <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
     </section>
@@ -250,15 +262,32 @@
       <p>Serving Southeast Pennsylvania. <a href="tel:+16103167761" class="link">Call now</a>.</p>
     </div>
   </footer>
+  <a href="#top" class="back-to-top" id="back-to-top" aria-label="Back to top">Top</a>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
     const form = document.getElementById("estimate-form");
     const status = document.getElementById("form-status");
+    const preferredContact = document.getElementById("preferred-contact");
+    const submitButton = form.querySelector("button[type='submit']");
+    const businessEmail = "DentLogicInc@gmail.com";
+
+    const setStatus = (message, isError = false) => {
+      status.textContent = message;
+      status.classList.toggle("form-status-error", isError);
+    };
+
+    const syncSubmitLabel = () => {
+      submitButton.textContent = preferredContact.value === "text" ? "Prepare Text Request" : "Prepare Email Request";
+    };
+
+    syncSubmitLabel();
+    preferredContact.addEventListener("change", syncSubmitLabel);
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
+      setStatus("");
 
       if (!form.checkValidity()) {
         form.reportValidity();
@@ -269,17 +298,40 @@
       const email = document.getElementById("email").value.trim();
       const phone = document.getElementById("phone").value.trim();
       const details = document.getElementById("details").value.trim();
+      const method = preferredContact.value;
+
+      if (!email && !phone) {
+        setStatus("Please add either an email address or phone number so we can follow up.", true);
+        document.getElementById("email").focus();
+        return;
+      }
 
       const message = [
-        "Estimate request from Dent Logic website",
+        "Estimate Request - Dent Logic Website",
+        "",
+        `Preferred contact method: ${method === "text" ? "Text message" : "Email"}`,
         `Name: ${name}`,
-        email ? `Email: ${email}` : "",
-        phone ? `Phone: ${phone}` : "",
-        `Details: ${details}`
-      ].filter(Boolean).join("\n");
+        email ? `Email: ${email}` : "Email: Not provided",
+        phone ? `Phone: ${phone}` : "Phone: Not provided",
+        "",
+        "Vehicle and Damage Details:",
+        details
+      ].join("\n");
 
-      status.textContent = "Opening your text app...";
-      window.location.href = `sms:+16103167761?body=${encodeURIComponent(message)}`;
+      if (method === "text") {
+        setStatus("Opening your text app...");
+        window.location.href = `sms:+16103167761?body=${encodeURIComponent(message)}`;
+        return;
+      }
+
+      setStatus("Opening your email app...");
+      const subject = "Estimate Request - Dent Logic Website";
+      window.location.href = `mailto:${businessEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+    });
+
+    const backToTop = document.getElementById("back-to-top");
+    window.addEventListener("scroll", () => {
+      backToTop.classList.toggle("show", window.scrollY > 420);
     });
   </script>
 
@@ -290,6 +342,7 @@
     "name": "Dent Logic Inc",
     "image": "https://www.dentlogicpa.com/logo.png",
     "telephone": "+1-610-316-7761",
+    "email": "DentLogicInc@gmail.com",
     "url": "https://www.dentlogicpa.com/",
     "sameAs": ["https://www.facebook.com/DentLogicInc"],
     "areaServed": [
