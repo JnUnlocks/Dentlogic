@@ -122,6 +122,11 @@ a { color: var(--brand-dark); text-underline-offset: 2px; }
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.92);
 }
+.hero-proof {
+  margin: 0 auto 1.3rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.86);
+}
 .hero-points {
   margin: 0 0 1.3rem;
   padding: 0;
@@ -308,6 +313,27 @@ summary:focus-visible {
   font-weight: 600;
 }
 .form-status-error { color: #b42318; }
+.trust-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 0.9rem;
+}
+.trust-pill {
+  display: inline-flex;
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid #d4dde8;
+  color: #223247;
+  text-decoration: none;
+  font-weight: 600;
+  background: #f7f9fc;
+}
+.trust-pill:hover,
+.trust-pill:focus-visible {
+  background: #edf3fb;
+  color: #0e2238;
+}
 
 .site-footer { background: #0f172a; color: #cbd5e1; margin-top: 2rem; }
 .footer-inner { padding: 2rem 0; text-align: center; }
