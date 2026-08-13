@@ -1,0 +1,10 @@
+{
+  "name": "dentlogic-site",
+  "private": true,
+  "scripts": {
+    "build": "node build-pages.js && node check.js",
+    "images": "node build-images.js",
+    "check": "node check.js"
+  },
+  "devDependencies": { "sharp": "^0.34.0" }
+}

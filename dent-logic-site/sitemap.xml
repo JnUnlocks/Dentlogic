@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://dentlogic.netlify.app/</loc>
-    <lastmod>2026-02-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://dentlogic.netlify.app/</loc><lastmod>2026-08-13</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://dentlogic.netlify.app/pdr/pottstown-pa/</loc><lastmod>2026-08-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dentlogic.netlify.app/pdr/king-of-prussia-pa/</loc><lastmod>2026-08-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dentlogic.netlify.app/pdr/west-chester-pa/</loc><lastmod>2026-08-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dentlogic.netlify.app/pdr/malvern-pa/</loc><lastmod>2026-08-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dentlogic.netlify.app/pdr/reading-pa/</loc><lastmod>2026-08-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dentlogic.netlify.app/pdr/allentown-pa/</loc><lastmod>2026-08-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dentlogic.netlify.app/pdr/quakertown-pa/</loc><lastmod>2026-08-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
