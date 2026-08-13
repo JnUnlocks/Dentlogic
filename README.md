@@ -33,14 +33,29 @@ Originals stay in `dent-logic-site/assets/*.jpg`; generated files are the
 
 ## Estimate form
 
-Posts to **Netlify Forms** (form name: `estimate`), with photo upload. It is
-wired up in the HTML but stores submissions silently until notifications are on:
-
-**Netlify → Forms → Settings → Form notifications → Add notification → Email
-notification** → `DentLogicInc@gmail.com`
-
-Free tier covers 100 submissions/month including file uploads. Each submission
+Posts to **Netlify Forms** (form name: `estimate`), with photo upload. Netlify
+stores every submission and photo on the free tier (100/month). Each submission
 records a `lead_source` field showing which page produced the lead.
+
+### Getting notified
+
+Netlify's own **email** notification is a Pro feature. Instead, `tools/notify.gs`
+receives Netlify's free **HTTP POST** webhook and emails the lead from Greg's own
+Gmail via Google Apps Script — no third party, no API key, no subscription.
+
+Setup instructions are in the header comment of that file. In short: paste it
+into a new Apps Script project, set a `SHARED_SECRET` script property, deploy as
+a web app, then point Netlify's *HTTP POST request* notification at
+`<exec-url>?key=<secret>`.
+
+The secret lives only in Script Properties and the Netlify URL — never in this
+repo, which is public. `tools/` sits outside the publish directory, so nothing
+in it is served.
+
+The email is built for a phone: subject line carries vehicle, damage type and
+ZIP, and the body has tap-to-call / tap-to-text buttons plus photo links.
+Replying goes straight to the customer. If the notifier ever throws, it falls
+back to mailing the raw payload rather than dropping the lead.
 
 ## Known follow-ups
 
